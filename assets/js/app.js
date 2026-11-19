@@ -26,7 +26,9 @@
   var menuButton = document.getElementById("menuButton");
   var sidebar = document.getElementById("sidebar");
   var sidebarScrim = document.getElementById("sidebarScrim");
+  var sidebarClose = document.getElementById("sidebarClose");
   var navLinks = Array.prototype.slice.call(document.querySelectorAll("[data-nav]"));
+  var sidebarLinks = Array.prototype.slice.call(document.querySelectorAll(".sidebar a[href]"));
   var mobileQuery = window.matchMedia("(max-width: 980px)");
   var lastMenuTrigger = null;
 
@@ -64,7 +66,13 @@
     });
   }
 
-  navLinks.forEach(function (link) {
+  if (sidebarClose) {
+    sidebarClose.addEventListener("click", function () {
+      setMenu(false, true);
+    });
+  }
+
+  sidebarLinks.forEach(function (link) {
     link.addEventListener("click", function () {
       if (mobileQuery.matches) {
         setMenu(false, false);
